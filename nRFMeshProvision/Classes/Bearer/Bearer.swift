@@ -59,7 +59,7 @@ public enum PduType: UInt8 {
     }
 }
 
-public struct PduTypes: OptionSet {    
+public struct PduTypes: OptionSet {
     public let rawValue: UInt8
         
     public static let networkPdu         = PduTypes(rawValue: 1 << 0)
@@ -91,6 +91,11 @@ public protocol Transmitter: class {
 /// The Bearer object is responsible for sending and receiving the data
 /// to the mesh network.
 public protocol Bearer: Transmitter {
+    
+    //
+    var logger: LoggerDelegate? { get set }
+    var name: String? { get }
+    var identifier: UUID { get }
     
     /// The Bearer delegate object will receive callbacks whenever the
     /// Bearer state changes.
@@ -126,6 +131,10 @@ public protocol MeshBearer: Bearer {
 
 public protocol ProvisioningBearer: Bearer {
     // Empty.
+}
+
+public protocol MXProvisioningBearer: MeshBearer, ProvisioningBearer {
+    func switchToProxyBearer() -> Bool
 }
 
 extension ProvisioningBearer {
