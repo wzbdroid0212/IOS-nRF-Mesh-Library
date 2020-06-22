@@ -58,6 +58,8 @@ class NetworkConnection: NSObject, Bearer {
     /// A flag set to `true` when any of the underlying bearers is open.
     var isOpen: Bool = false
     
+    var identifier = UUID()
+    
     weak var delegate: BearerDelegate?
     weak var dataDelegate: BearerDataDelegate?
     weak var logger: LoggerDelegate? {
