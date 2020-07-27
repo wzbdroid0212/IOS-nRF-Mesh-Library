@@ -259,8 +259,8 @@ internal extension ProxyFilter {
     /// its Unicast Addresses and All Nodes address.
     func newProxyDidConnect() {
         logger?.i(.proxy, "New Proxy connected")
+		NotificationCenter.default.post(name: NSNotification.Name("MESH_CONNECTED"), object: nil)
         mutex.sync {
-			NotificationCenter.default.post(name: NSNotification.Name("MESH_CONNECTED"), object: nil)
             busy = false
             // The proxy Node is unknown at the moment.
             proxy = nil
