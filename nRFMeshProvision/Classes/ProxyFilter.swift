@@ -260,6 +260,7 @@ internal extension ProxyFilter {
     func newProxyDidConnect() {
         logger?.i(.proxy, "New Proxy connected")
         mutex.sync {
+			NotificationCenter.default.post(name: NSNotification.Name("MESH_CONNECTED"), object: nil)
             busy = false
             // The proxy Node is unknown at the moment.
             proxy = nil
