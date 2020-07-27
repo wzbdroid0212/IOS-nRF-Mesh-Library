@@ -66,5 +66,9 @@ public extension GattBearerDelegate {
     func bearer(_ bearer: Bearer, didReadRSSI RSSI: NSNumber) {
         // This method is optional.
     }
+	
+    func bearerDidSwitchedToProxy(_ bearer: Bearer) {
+        // This method is optional.
+    }
     
 }
